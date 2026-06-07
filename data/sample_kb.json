@@ -1,0 +1,21 @@
+[
+  {
+    "id": "leave-policy",
+    "title": "年假制度",
+    "department": "HR",
+    "content": "员工入职满一年后可享受 5 天年假，按自然年核算。未休完年假可按公司政策结转，最长结转 3 个月。"
+  },
+  {
+    "id": "expense-policy",
+    "title": "报销制度",
+    "department": "Finance",
+    "content": "差旅报销需在出差结束后 15 个自然日内提交，餐补、住宿、交通需附电子票据。超过 5000 元的报销需要部门负责人审批。"
+  },
+  {
+    "id": "it-helpdesk",
+    "title": "IT 服务台",
+    "department": "IT",
+    "content": "员工可通过企业服务台提交电脑、VPN、邮箱、权限开通等工单。标准响应时间为 4 个工作小时。"
+  }
+]
+

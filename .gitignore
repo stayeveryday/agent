@@ -1,0 +1,12 @@
+.venv/
+.claude/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pyc
+*.pyo
+*.pyd
+data/memory.jsonl
+.env
+src/enterprise_rag_agent.egg-info/
