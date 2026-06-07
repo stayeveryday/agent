@@ -20,6 +20,7 @@ from enterprise_rag_agent.prompts import (
     REWRITE_PROMPT,
     TOOL_PROMPT,
 )
+from enterprise_rag_agent.reranker import BGEReranker
 from enterprise_rag_agent.schemas import (
     AgentState,
     IntentResult,
@@ -28,7 +29,7 @@ from enterprise_rag_agent.schemas import (
     RewriteResult,
 )
 from enterprise_rag_agent.tools import build_default_tools
-from enterprise_rag_agent.vectorstore import HashEmbeddings, build_vector_store
+from enterprise_rag_agent.vectorstore import BGEM3Embeddings, build_vector_store
 
 
 def _format_docs(docs: list[dict[str, Any]]) -> str:
@@ -165,7 +166,18 @@ class OfflineRuntime:
 def build_agent(settings: AgentSettings):
     use_offline = not bool(settings.openai_api_key.strip())
 
-    embeddings = HashEmbeddings()
+    if settings.embedding_backend != "bge-m3":
+        raise ValueError(
+            f"Unsupported embedding backend: {settings.embedding_backend}. "
+            "Only `bge-m3` is currently implemented."
+        )
+
+    embeddings = BGEM3Embeddings(
+        model_name=settings.embedding_model_name,
+        device=settings.embedding_device,
+        use_fp16=settings.embedding_use_fp16,
+        batch_size=settings.embedding_batch_size,
+    )
 
     if use_offline:
         offline = OfflineRuntime(top_k=settings.top_k)
@@ -179,11 +191,24 @@ def build_agent(settings: AgentSettings):
         )
         offline = None
 
-    knowledge_store = build_vector_store(settings.kb_path, embeddings)
+    knowledge_store = build_vector_store(
+        settings.kb_path,
+        embeddings,
+        backend=settings.vector_store_backend,
+        index_dir=settings.vector_store_path,
+    )
     memory_store = ConversationMemory(
         path=settings.memory_path,
         vector_store=InMemoryVectorStore(embeddings),
     )
+    reranker = None
+    if settings.reranker_enabled:
+        reranker = BGEReranker(
+            model_name=settings.reranker_model_name,
+            device=settings.reranker_device,
+            use_fp16=settings.reranker_use_fp16,
+            batch_size=settings.reranker_batch_size,
+        )
     tools = build_default_tools()
     tools_by_name = {tool.name: tool for tool in tools}
 
@@ -250,9 +275,9 @@ def build_agent(settings: AgentSettings):
 
         docs = knowledge_store.similarity_search(
             state.get("rewritten_query", state["user_query"]),
-            k=settings.top_k,
+            k=max(settings.top_k, settings.retrieval_fetch_k),
         )
-        results = [
+        results: list[dict[str, Any]] = [
             {
                 "content": doc.page_content,
                 "title": doc.metadata.get("title", "unknown"),
@@ -261,6 +286,14 @@ def build_agent(settings: AgentSettings):
             }
             for doc in docs
         ]
+        if reranker is not None:
+            results = reranker.rerank(
+                query=state.get("rewritten_query", state["user_query"]),
+                docs=results,
+                top_k=settings.top_k,
+            )
+        else:
+            results = results[: settings.top_k]
         return {"retrieved_docs": results}
 
     def invoke_tools(state: AgentState) -> AgentState:

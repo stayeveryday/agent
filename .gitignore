@@ -8,5 +8,6 @@ __pycache__/
 *.pyo
 *.pyd
 data/memory.jsonl
+data/faiss_index/
 .env
 src/enterprise_rag_agent.egg-info/
