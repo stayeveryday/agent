@@ -7,10 +7,10 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-data/memory.jsonl
-data/faiss_index/
+enterprise_rag_agent/data/memory.jsonl
+enterprise_rag_agent/data/faiss_index/
 .env
-src/enterprise_rag_agent.egg-info/
+enterprise_rag_agent/src/enterprise_rag_agent.egg-info/
 .idea/
 *.log
 enterprise-it-agent/.run/
