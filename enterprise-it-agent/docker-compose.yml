@@ -1,0 +1,16 @@
+services:
+  enterprise-it-agent:
+    build:
+      context: .
+    container_name: enterprise-it-agent
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      EMBEDDING_DEVICE: cpu
+      EMBEDDING_USE_FP16: "false"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+

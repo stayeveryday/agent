@@ -1,0 +1,11 @@
+.venv
+.run
+.vscode
+__pycache__
+*.pyc
+.pytest_cache
+.env
+uvicorn.log
+uvicorn.err.log
+data/vector_store
+
