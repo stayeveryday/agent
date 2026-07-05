@@ -291,3 +291,10 @@ What each part does:
 - `docs/architecture.md` summarizes the final system architecture.
 - `docs/learning_review.md` summarizes the learning outcomes, current capability level, prototype boundaries, and next phase.
 - The 30-day LangChain + LangGraph Agent Harness learning project is complete.
+
+## Fine-Tuned Intent Provider Notes
+
+- `/fine-tuned-intent/preview` previews the local LoRA intent model output through the contract layer.
+- `INTENT_PROVIDER=llm` keeps the original LLM classifier.
+- `INTENT_PROVIDER=fine_tuned` routes LangGraph intent classification through the local LoRA model.
+- `INTENT_PROVIDER=fallback` tries the fine-tuned model first, then falls back to the LLM classifier when guardrails fail.

@@ -2,7 +2,7 @@ import re
 
 from app.audit.log import record_audit_event
 from app.chains.basic_chat import ask
-from app.chains.intent_classifier import classify_intent
+from app.fine_tuning.intent_provider import classify_with_configured_provider
 from app.graph.state import AgentState
 from app.rag.answer import collect_sources, generate_rag_answer
 from app.rag.retriever import search_knowledge_base
@@ -16,10 +16,19 @@ def _none_if_general(value: str | None) -> str | None:
 
 
 def classify_intent_node(state: AgentState) -> AgentState:
-    result = classify_intent(state.get("resolved_user_query", state["user_query"]))
+    result = classify_with_configured_provider(state.get("resolved_user_query", state["user_query"]))
     return {
         "intent": result.intent,
         "intent_reason": result.reason,
+        "intent_provider": result.provider,
+        "intent_contract": {
+            "ticket_id": result.ticket_id,
+            "asset_tag": result.asset_tag,
+            "priority": result.priority,
+            "category": result.category,
+            "raw_output": result.raw_output,
+            "validation_failures": result.validation_failures,
+        },
     }
 
 

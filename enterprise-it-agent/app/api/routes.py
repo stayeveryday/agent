@@ -9,6 +9,7 @@ from app.demo.acceptance import run_acceptance
 from app.demo.scenarios import get_demo_scenarios_doc
 from app.evals.dataset import preview_eval_dataset
 from app.evals.runner import run_evaluations
+from app.fine_tuning.intent_preview import preview_fine_tuned_intent
 from app.graph.checkpoints import approve_checkpoint, create_checkpoint, reject_checkpoint
 from app.prompts.it_support import get_it_support_prompt
 from app.graph.state import build_initial_state, describe_agent_state
@@ -32,6 +33,10 @@ from app.schemas.evals import (
     EvalDatasetPreviewResponse,
     EvalRunRequest,
     EvalRunResponse,
+)
+from app.schemas.fine_tuning import (
+    FineTunedIntentPreviewRequest,
+    FineTunedIntentPreviewResponse,
 )
 from app.schemas.graph import (
     AgentStateDescriptionResponse,
@@ -161,6 +166,17 @@ def intent(req: ChatRequest) -> IntentResult:
         raise HTTPException(status_code=502, detail=f"Model invocation failed: {exc}") from exc
 
     return result
+
+
+@router.post("/fine-tuned-intent/preview", response_model=FineTunedIntentPreviewResponse)
+def fine_tuned_intent_preview(req: FineTunedIntentPreviewRequest) -> FineTunedIntentPreviewResponse:
+    try:
+        result = preview_fine_tuned_intent(req.question)
+    except RuntimeError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=f"Fine-tuned intent preview failed: {exc}") from exc
+    return FineTunedIntentPreviewResponse(**result)
 
 
 @router.get("/rag/preview", response_model=RagPreviewResponse)

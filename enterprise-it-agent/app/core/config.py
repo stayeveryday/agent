@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     embedding_device: str = "cuda"
     embedding_use_fp16: bool = True
     embedding_batch_size: int = 8
+    intent_provider: str = "fine_tuned"
 
     model_config = SettingsConfigDict(
         env_file=".env",

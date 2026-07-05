@@ -14,6 +14,8 @@ class AgentState(TypedDict, total=False):
     memory_context: str
     intent: IntentType
     intent_reason: str
+    intent_provider: str
+    intent_contract: dict[str, object]
     route_name: str
     route_reason: str
     retrieved_docs: list[dict[str, object]]

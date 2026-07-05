@@ -16,3 +16,4 @@ enterprise_rag_agent/src/enterprise_rag_agent.egg-info/
 enterprise-it-agent/.run/
 enterprise-it-agent/data/faiss_index/
 enterprise-it-agent/data/vector_store/
+fine_tuning/outputs/

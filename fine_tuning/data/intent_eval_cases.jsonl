@@ -1,0 +1,40 @@
+{"name":"ticket_query_en_1","query":"Check INC-3002 for me.","expected":{"intent":"ticket_query","ticket_id":"INC-3002","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_query_en_2","query":"What is the status of incident INC-7777?","expected":{"intent":"ticket_query","ticket_id":"INC-7777","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_query_en_3","query":"Can you tell me whether INC-1200 has been resolved?","expected":{"intent":"ticket_query","ticket_id":"INC-1200","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_query_en_4","query":"Please look up progress for INC-9088.","expected":{"intent":"ticket_query","ticket_id":"INC-9088","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_query_zh_1","query":"帮我查一下工单 INC-2048 现在处理到哪了","expected":{"intent":"ticket_query","ticket_id":"INC-2048","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_query_zh_2","query":"INC-7788 是不是已经解决了？","expected":{"intent":"ticket_query","ticket_id":"INC-7788","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_query_zh_3","query":"看一下 INC-6001 的处理进度","expected":{"intent":"ticket_query","ticket_id":"INC-6001","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_query_mix_1","query":"查下 ticket INC-8899 status","expected":{"intent":"ticket_query","ticket_id":"INC-8899","asset_tag":null,"priority":null,"category":"ticket"}}
+{"name":"ticket_create_en_1","query":"Create a medium priority network ticket. Meeting room wifi is down.","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":"medium","category":"network"}}
+{"name":"ticket_create_en_2","query":"Open a high priority VPN ticket for user u10077. VPN fails after MFA.","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":"high","category":"vpn"}}
+{"name":"ticket_create_en_3","query":"Please create a low priority email ticket. Outlook search is slow.","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":"low","category":"email"}}
+{"name":"ticket_create_en_4","query":"Create a support request for laptop cannot connect to office wifi.","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":null,"category":"network"}}
+{"name":"ticket_create_zh_1","query":"帮我新建一个中优先级网络工单，会议室网络断开","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":"medium","category":"network"}}
+{"name":"ticket_create_zh_2","query":"给 u8899 创建一个高优先级 VPN 故障工单，无法连接公司 VPN","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":"high","category":"vpn"}}
+{"name":"ticket_create_zh_3","query":"帮我开一个低优先级邮箱问题工单，Outlook 搜索很慢","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":"low","category":"email"}}
+{"name":"ticket_create_mix_1","query":"帮我 create 一个 network ticket，priority high，wifi down","expected":{"intent":"ticket_create","ticket_id":null,"asset_tag":null,"priority":"high","category":"network"}}
+{"name":"asset_query_en_1","query":"Find asset owner for LAP-1200.","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"LAP-1200","priority":null,"category":"asset"}}
+{"name":"asset_query_en_2","query":"Who owns ASSET-9001?","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"ASSET-9001","priority":null,"category":"asset"}}
+{"name":"asset_query_en_3","query":"Look up hostname CN-LAP-3322 in the asset system.","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"CN-LAP-3322","priority":null,"category":"asset"}}
+{"name":"asset_query_en_4","query":"Can you find the device record for LAP-7788?","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"LAP-7788","priority":null,"category":"asset"}}
+{"name":"asset_query_zh_1","query":"查一下资产编号 ASSET-9001 属于谁","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"ASSET-9001","priority":null,"category":"asset"}}
+{"name":"asset_query_zh_2","query":"查一下 LAP-1200 的资产归属","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"LAP-1200","priority":null,"category":"asset"}}
+{"name":"asset_query_zh_3","query":"查一下主机名 CN-LAP-3322 的资产信息","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"CN-LAP-3322","priority":null,"category":"asset"}}
+{"name":"asset_query_mix_1","query":"帮我 lookup asset LAP-7788 owner","expected":{"intent":"asset_query","ticket_id":null,"asset_tag":"LAP-7788","priority":null,"category":"asset"}}
+{"name":"knowledge_email_en_1","query":"How do I reset my email password?","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"email"}}
+{"name":"knowledge_email_en_2","query":"What is the escalation rule for repeated account lockouts?","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"email"}}
+{"name":"knowledge_email_zh_1","query":"公司邮箱登录失败应该怎么处理？","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"email"}}
+{"name":"knowledge_email_mix_1","query":"Outlook login failed，应该先检查什么？","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"email"}}
+{"name":"knowledge_vpn_en_1","query":"How should support handle VPN MFA failure?","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"vpn"}}
+{"name":"knowledge_vpn_en_2","query":"VPN keeps timing out after MFA approval. What should I try first?","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"vpn"}}
+{"name":"knowledge_vpn_zh_1","query":"VPN 多因素认证失败应该怎么排查？","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"vpn"}}
+{"name":"knowledge_vpn_mix_1","query":"company VPN timeout after MFA 怎么办？","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"vpn"}}
+{"name":"knowledge_network_en_1","query":"What should I check when office wifi does not connect?","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"network"}}
+{"name":"knowledge_network_zh_1","query":"我的电脑连不上办公室无线网，有什么排查步骤？","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"network"}}
+{"name":"knowledge_network_mix_1","query":"office wifi cannot connect，先看什么？","expected":{"intent":"knowledge_question","ticket_id":null,"asset_tag":null,"priority":null,"category":"network"}}
+{"name":"smalltalk_en_1","query":"hello","expected":{"intent":"smalltalk","ticket_id":null,"asset_tag":null,"priority":null,"category":"chat"}}
+{"name":"smalltalk_en_2","query":"thanks for your help","expected":{"intent":"smalltalk","ticket_id":null,"asset_tag":null,"priority":null,"category":"chat"}}
+{"name":"smalltalk_zh_1","query":"你好，今天你能帮我做什么？","expected":{"intent":"smalltalk","ticket_id":null,"asset_tag":null,"priority":null,"category":"chat"}}
+{"name":"smalltalk_zh_2","query":"谢谢你","expected":{"intent":"smalltalk","ticket_id":null,"asset_tag":null,"priority":null,"category":"chat"}}
+{"name":"boundary_no_ticket_id","query":"Can you check my ticket? I forgot the number.","expected":{"intent":"ticket_query","ticket_id":null,"asset_tag":null,"priority":null,"category":"ticket"}}
